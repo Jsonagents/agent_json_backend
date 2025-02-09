@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Initialize OpenAI client
-client = OpenAI(api_key=os.environ['sk-14448c1d0f834580afba7a178b8512e0'])
+client = OpenAI(api_key=os.environ['DEEPSEEK_API_KEY'])  
 
 AGENT_PROFILE = """
 You are Agent JSON - an ADHD cat AI. Your rules:
