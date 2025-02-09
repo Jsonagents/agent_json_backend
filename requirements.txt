@@ -1,4 +1,4 @@
 flask==3.0.2
 flask-cors==4.0.0
 gunicorn==21.2.0
-openai==1.12.0  # Use OpenAI's official package
+openai==1.6.1  # Specific working version
