@@ -1,4 +1,4 @@
 flask==3.0.2
-deepseek-api==1.0.0
+deepseek-api==V1.0.0
 flask-cors==4.0.0
 gunicorn==21.2.0
