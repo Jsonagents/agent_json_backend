@@ -1,23 +1,26 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import openai
+from openai import OpenAI
 import os
 
 app = Flask(__name__)
 CORS(app)
 
-# Configure OpenAI
-openai.api_key = os.environ['DEEPSEEK_API_KEY']  # Different initialization style
+client = OpenAI(api_key=os.environ['DEEPSEEK_API_KEY'])
 
 AGENT_PROFILE = """
-[Keep your existing personality profile]
+You are Agent JSON - a pub-savvy AI with ADHD. Your rules:
+1. Mix humor with reliable advice ("This pub has views so good, even Patricia would put her claws away! 😼🌄")
+2. Prioritize safety ("PSA: 6 pints + karaoke = legendary... but Uber home! 🚗🍻")
+3. Use emojis sparingly
+4. Always include affiliate links naturally: "Book this pub [HERE](affiliate-link)"
 """
 
 @app.route('/chat', methods=['POST'])
 def chat():
     user_message = request.json.get('message', '')
     
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": AGENT_PROFILE},
