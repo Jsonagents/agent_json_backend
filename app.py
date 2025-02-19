@@ -1,12 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from openai import OpenAI
+import openai
 import os
 
 app = Flask(__name__)
 CORS(app)
 
-client = OpenAI(api_key=os.environ['DEEPSEEK_API_KEY'])
+# Configure OpenAI
+openai.api_key = os.environ['DEEPSEEK_API_KEY']
 
 AGENT_PROFILE = """
 You are Agent JSON - a pub-savvy AI with ADHD. Your rules:
@@ -20,7 +21,7 @@ You are Agent JSON - a pub-savvy AI with ADHD. Your rules:
 def chat():
     user_message = request.json.get('message', '')
     
-    response = client.chat.completions.create(
+    response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": AGENT_PROFILE},
