@@ -1,4 +1,0 @@
-flask==3.0.2
-openai==0.28.1  # Downgrade to a compatible version
-flask-cors==4.0.0
-gunicorn==21.2.0
